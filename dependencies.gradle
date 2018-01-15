@@ -1,0 +1,34 @@
+ext {
+  // Android Version
+  minSdkVersion = 19
+  minSdkVersionDev = 21
+  compileSdkVersion = 27
+  targetSdkVersion = 27
+  buildToolsVersion = '27.0.2'
+  gradleVersion = '3.0.1'
+  kotlinVersion = '1.2.10'
+
+  supportLibraryVersion = '27.0.2'
+
+  // Kotlin
+  kotlinStdlib = 'org.jetbrains.kotlin:kotlin-stdlib-jre8:' + kotlinVersion
+
+  def groupId = 'com.android.support'
+  appcompatV7 = groupId + ':appcompat-v7:' + supportLibraryVersion
+  cardView = groupId + ':cardview-v7:' + supportLibraryVersion
+  design = groupId + ':design:' + supportLibraryVersion
+  recyclerviewV7 = groupId + ':recyclerview-v7:' + supportLibraryVersion
+  supportAnnotations = groupId + ':support-annotations:' + supportLibraryVersion
+  supportV4 = groupId + ':support-v4:' + supportLibraryVersion
+  constraintLayout = groupId + '.constraint:constraint-layout:1.1.0-beta3'
+
+  picasso = 'com.squareup.picasso:picasso:2.6.0-SNAPSHOT'
+
+  supportLibs = [appcompatV7,
+                 cardView,
+                 design,
+                 recyclerviewV7,
+                 supportAnnotations,
+                 supportV4,
+                 constraintLayout]
+}
