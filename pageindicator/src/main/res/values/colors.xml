@@ -1,0 +1,5 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+  <color name="pi_selected_color">#3897F0</color>
+  <color name="pi_default_color">#B2B2B2</color>
+</resources>

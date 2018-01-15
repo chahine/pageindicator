@@ -1,12 +1,11 @@
 ext {
   // Android Version
-  minSdkVersion = 19
-  minSdkVersionDev = 21
+  minSdkVersion = 14
   compileSdkVersion = 27
   targetSdkVersion = 27
   buildToolsVersion = '27.0.2'
   gradleVersion = '3.0.1'
-  kotlinVersion = '1.2.10'
+  kotlinVersion = '1.2.20'
 
   supportLibraryVersion = '27.0.2'
 
@@ -31,4 +30,6 @@ ext {
                  supportAnnotations,
                  supportV4,
                  constraintLayout]
+
+  junit = 'junit:junit:4.12'
 }

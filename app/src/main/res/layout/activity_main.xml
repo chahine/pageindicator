@@ -1,48 +1,110 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
+<android.support.v4.widget.NestedScrollView
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     >
-  <android.support.v7.widget.RecyclerView
-      android:id="@+id/list"
+  <LinearLayout
       android:layout_width="match_parent"
       android:layout_height="wrap_content"
-      android:orientation="horizontal"
-      app:layoutManager="android.support.v7.widget.LinearLayoutManager"
-      />
-  <com.prolificinteractive.PageIndicator
-      android:id="@+id/pageIndicator"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:background="#00440000"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@id/list"
-      />
+      android:orientation="vertical"
+      >
 
-  <Button
-      android:id="@+id/leftBtn"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:layout_marginTop="32dp"
-      android:text="Left"
-      app:layout_constraintEnd_toStartOf="@+id/rightBtn"
-      app:layout_constraintHorizontal_chainStyle="packed"
-      app:layout_constraintStart_toStartOf="parent"
-      app:layout_constraintTop_toBottomOf="@id/pageIndicator"
-      style="@style/Widget.AppCompat.Button.Colored"
-      />
-  <Button
-      android:id="@+id/rightBtn"
-      android:layout_width="wrap_content"
-      android:layout_height="wrap_content"
-      android:text="right"
-      app:layout_constraintBaseline_toBaselineOf="@id/leftBtn"
-      app:layout_constraintEnd_toEndOf="parent"
-      app:layout_constraintStart_toEndOf="@id/leftBtn"
-      style="@style/Widget.AppCompat.Button.Colored"
-      />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        android:text="RecyclerView"
+        style="@style/TextAppearance.AppCompat.Title"
+        />
 
-</android.support.constraint.ConstraintLayout>
+    <android.support.v7.widget.RecyclerView
+        android:id="@+id/list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layoutManager="android.support.v7.widget.LinearLayoutManager"
+        tools:listitem="@layout/item_card"
+        />
+
+    <com.chahinem.pageindicator.PageIndicator
+        android:id="@+id/pageIndicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:padding="16dp"
+        android:text="ViewPager"
+        style="@style/TextAppearance.AppCompat.Title"
+        />
+
+    <android.support.v4.view.ViewPager
+        android:id="@+id/pager"
+        android:layout_width="match_parent"
+        android:layout_height="360dp"
+        />
+
+    <com.chahinem.pageindicator.PageIndicator
+        android:id="@+id/pagerPageIndicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="8dp"
+        />
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:padding="16dp"
+        android:text="Manual"
+        style="@style/TextAppearance.AppCompat.Title"
+        />
+
+    <com.chahinem.pageindicator.PageIndicator
+        android:id="@+id/manualPageIndicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        >
+      <Button
+          android:id="@+id/leftBtn"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="Left"
+          style="@style/Widget.AppCompat.Button.Colored"
+          />
+      <Button
+          android:id="@+id/rightBtn"
+          android:layout_width="wrap_content"
+          android:layout_height="wrap_content"
+          android:text="right"
+          style="@style/Widget.AppCompat.Button.Colored"
+          />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:padding="16dp"
+        style="@style/TextAppearance.AppCompat.Caption"
+        android:text="Photos by Mary Quincy"
+        />
+  </LinearLayout>
+</android.support.v4.widget.NestedScrollView>

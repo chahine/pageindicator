@@ -1,6 +1,10 @@
-apply plugin: 'com.android.application'
+apply plugin: 'com.android.library'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
+apply plugin: 'com.github.dcendents.android-maven'
+
+group = 'com.github.chahinem'
+version = '0.1'
 
 androidExtensions { experimental = true }
 
@@ -9,8 +13,6 @@ android {
   buildToolsVersion rootProject.buildToolsVersion
 
   defaultConfig {
-    applicationId 'com.chahinem.pageindicator.sample'
-
     minSdkVersion rootProject.minSdkVersion
     targetSdkVersion rootProject.targetSdkVersion
 
@@ -22,8 +24,9 @@ android {
 }
 
 dependencies {
-  implementation project(':pageindicator')
   implementation rootProject.kotlinStdlib
-  implementation rootProject.picasso
-  rootProject.supportLibs.each { implementation it }
+  implementation rootProject.recyclerviewV7
+  implementation rootProject.supportV4
+
+  testImplementation rootProject.junit
 }
