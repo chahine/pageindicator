@@ -7,6 +7,7 @@ import android.graphics.Paint
 import android.os.Parcelable
 import android.support.v4.view.PagerAdapter
 import android.support.v4.view.ViewPager
+import android.support.v4.view.ViewPager.OnPageChangeListener
 import android.support.v7.widget.RecyclerView
 import android.util.AttributeSet
 import android.view.View
@@ -39,8 +40,11 @@ class PageIndicator @JvmOverloads constructor(
   private var scrollAnimator: ValueAnimator? = null
   private var initialPadding: Int = 0
 
+  private var scrollListener: RecyclerView.OnScrollListener? = null
+  private var pageChangeListener: ViewPager.OnPageChangeListener? = null
+
   private var _count = 0
-  var count: Int
+  private var count: Int
     set(value) {
       _count = value
       dotManager = DotManager(
@@ -149,13 +153,19 @@ class PageIndicator @JvmOverloads constructor(
   }
 
   fun attachTo(recyclerView: RecyclerView) {
-    recyclerView.addOnScrollListener(ScrollListener(this))
+    recyclerView.removeOnScrollListener(scrollListener)
     count = recyclerView.adapter.itemCount
+    scrollListener = ScrollListener(this)
+    recyclerView.addOnScrollListener(scrollListener)
+    scrollToTarget(0)
   }
 
   fun attachTo(viewPager: ViewPager) {
-    viewPager.addOnPageChangeListener(PageChangeListener(this))
+    pageChangeListener?.let { viewPager.removeOnPageChangeListener(it) }
     count = (viewPager.adapter as PagerAdapter).count
+    pageChangeListener = PageChangeListener(this)
+    viewPager.addOnPageChangeListener(pageChangeListener as OnPageChangeListener)
+    scrollToTarget(0)
   }
 
   fun swipePrevious() {
