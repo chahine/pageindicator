@@ -18,7 +18,7 @@ __Step 2.__ Add the dependency
 
 ```groovy
 dependencies {
-  compile 'com.github.chahinem:Page-Indicator:0.2.1'
+  compile 'com.github.chahinem:Page-Indicator:0.2.2'
 }
 ```
 
