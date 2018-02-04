@@ -44,7 +44,7 @@ class PageIndicator @JvmOverloads constructor(
   private var pageChangeListener: ViewPager.OnPageChangeListener? = null
 
   private var _count = 0
-  private var count: Int
+  var count: Int
     set(value) {
       _count = value
       dotManager = DotManager(
