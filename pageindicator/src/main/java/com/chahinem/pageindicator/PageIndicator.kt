@@ -60,7 +60,7 @@ class PageIndicator @JvmOverloads constructor(
       dotAnimators = Array(_count, { _ -> ValueAnimator() })
 
       initialPadding = when (count) {
-        in 1..4 -> 2 * (dotSize + dotSpacing) + (dotBound - (dotSize + dotSpacing) * 2 + dotSpacing) / 2
+        in 1..4 -> (dotBound + (4 - count) * (dotSize + dotSpacing) + dotSpacing) / 2
         else -> 2 * (dotSize + dotSpacing)
       }
       invalidate()

@@ -21,6 +21,7 @@ ext {
   supportV4 = groupId + ':support-v4:' + supportLibraryVersion
   constraintLayout = groupId + '.constraint:constraint-layout:1.1.0-beta3'
 
+
   picasso = 'com.squareup.picasso:picasso:2.6.0-SNAPSHOT'
 
   supportLibs = [appcompatV7,

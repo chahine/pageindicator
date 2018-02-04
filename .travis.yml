@@ -1,0 +1,34 @@
+sudo: false
+
+language: android
+
+android:
+  components:
+    - tools
+    - platform-tools
+    - build-tools-27.0.2
+    - android-27
+    - extra-google-m2repository
+    - extra-android-m2repository
+  licenses:
+    - 'android-sdk-license-.+'
+    - 'google-gdk-license-.+'
+
+before_install:
+  - echo yes | sdkmanager "platforms;android-27"
+
+script:
+  - ./gradlew clean build -PdisablePreDex --stacktrace --console plain
+
+jdk:
+  - oraclejdk8
+
+branches:
+  only:
+    - master
+
+cache:
+  directories:
+    - $HOME/.gradle
+
+sudo: false
