@@ -103,13 +103,15 @@ class PageIndicator @JvmOverloads constructor(
     super.onDraw(canvas)
 
     var paddingStart = initialPadding
-    // FIXME: do not iterate on the entire list but only a subset of it
-    dotManager?.dots?.forEachIndexed { index, dot ->
+    val (start, end) = getDrawingRange()
+
+    paddingStart += (dotSize + dotSpacing) * start
+    (start until end).forEach {
       canvas?.drawCircle(
           paddingStart + dotSize / 2f - scrollAmount,
           dotSize / 2f,
-          dotSizes[index] / 2f,
-          when (dot) {
+          dotSizes[it] / 2f,
+          when (dotManager?.dots?.get(it)) {
             BYTE_6 -> selectedPaint
             else -> defaultPaint
           })
@@ -180,10 +182,10 @@ class PageIndicator @JvmOverloads constructor(
 
   private fun animateDots() {
     dotManager?.let {
-      // FIXME: do not iterate on the entire list but only a subset of it
-      it.dots.forEachIndexed { index, dot ->
+      val (start, end) = getDrawingRange()
+      (start until end).forEach { index ->
         dotAnimators[index].cancel()
-        dotAnimators[index] = ValueAnimator.ofInt(dotSizes[index], it.dotSizeFor(dot))
+        dotAnimators[index] = ValueAnimator.ofInt(dotSizes[index], it.dotSizeFor(it.dots[index]))
             .apply {
               duration = animDuration
               interpolator = DEFAULT_INTERPOLATOR
@@ -197,6 +199,14 @@ class PageIndicator @JvmOverloads constructor(
     }
   }
 
+  private fun getDrawingRange(): Pair<Int, Int> {
+    val start = Math.max(0, (dotManager?.selectedIndex ?: 0) - MOST_VISIBLE_COUNT)
+    val end = Math.min(
+        dotManager?.dots?.size ?: 0,
+        (dotManager?.selectedIndex ?: 0) + MOST_VISIBLE_COUNT)
+    return Pair(start, end)
+  }
+
   companion object {
     private const val BYTE_6 = 6.toByte()
     private const val BYTE_5 = 5.toByte()
@@ -205,6 +215,7 @@ class PageIndicator @JvmOverloads constructor(
     private const val BYTE_2 = 2.toByte()
     private const val BYTE_1 = 1.toByte()
 
+    private const val MOST_VISIBLE_COUNT = 10
     private const val DEFAULT_ANIM_DURATION = 200
 
     private val DEFAULT_INTERPOLATOR = DecelerateInterpolator()
