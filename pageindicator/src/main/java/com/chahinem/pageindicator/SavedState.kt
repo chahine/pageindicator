@@ -3,6 +3,7 @@ package com.chahinem.pageindicator
 import android.os.Parcel
 import android.os.Parcelable
 import android.view.View.BaseSavedState
+import org.jetbrains.annotations.NotNull
 
 internal class SavedState : BaseSavedState {
   var count: Int = 0
@@ -22,7 +23,8 @@ internal class SavedState : BaseSavedState {
   }
 
   companion object {
-    @Suppress("unused")
+    @JvmField
+    @NotNull
     val CREATOR: Parcelable.Creator<SavedState> = object : Parcelable.Creator<SavedState> {
       override fun createFromParcel(`in`: Parcel): SavedState {
         return SavedState(`in`)

@@ -4,7 +4,7 @@ apply plugin: 'kotlin-android-extensions'
 apply plugin: 'com.github.dcendents.android-maven'
 
 group = 'com.github.chahinem'
-version = '0.2.4'
+version = '0.2.5'
 
 androidExtensions { experimental = true }
 
