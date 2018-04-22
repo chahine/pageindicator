@@ -1,4 +1,5 @@
 [![Build Status](https://travis-ci.org/chahine/pageindicator.svg?branch=master)](https://travis-ci.org/chahine/pageindicator)
+[![](https://jitpack.io/v/chahine/pageindicator.svg)](https://jitpack.io/#chahine/pageindicator)
 
 # Page Indicator
 
@@ -20,7 +21,7 @@ __Step 2.__ Add the dependency
 
 ```groovy
 dependencies {
-  compile 'com.github.chahinem:pageindicator:0.2.4'
+  compile 'com.github.chahine:pageindicator:<latest-version>'
 }
 ```
 

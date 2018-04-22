@@ -2,7 +2,6 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
-
 android {
   compileSdkVersion rootProject.compileSdkVersion
 
@@ -16,16 +15,6 @@ android {
     versionName '1.0'
 
     testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
-  }
-
-  buildTypes {
-    release {
-      multiDexEnabled false
-      minifyEnabled true
-      shrinkResources true
-      zipAlignEnabled true
-      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
-    }
   }
 }
 
