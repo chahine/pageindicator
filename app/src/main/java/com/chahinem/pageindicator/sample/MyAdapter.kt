@@ -20,8 +20,8 @@ class MyAdapter(private val picasso: Picasso) : RecyclerView.Adapter<MyViewHolde
           .from(parent.context)
           .inflate(R.layout.item_card, parent, false))
 
-  override fun onBindViewHolder(holder: MyViewHolder?, position: Int) {
-    holder?.bind(picasso, items[holder.adapterPosition])
+  override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
+    holder.bind(picasso, items[holder.adapterPosition])
   }
 
   fun swapData(data: Iterable<MyItem>?) {

@@ -2,11 +2,9 @@ apply plugin: 'com.android.application'
 apply plugin: 'kotlin-android'
 apply plugin: 'kotlin-android-extensions'
 
-androidExtensions { experimental = true }
 
 android {
   compileSdkVersion rootProject.compileSdkVersion
-  buildToolsVersion rootProject.buildToolsVersion
 
   defaultConfig {
     applicationId 'com.chahinem.pageindicator.sample'
@@ -21,11 +19,12 @@ android {
   }
 
   buildTypes {
-    debug {
+    release {
       multiDexEnabled false
       minifyEnabled true
       shrinkResources true
       zipAlignEnabled true
+      proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
     }
   }
 }

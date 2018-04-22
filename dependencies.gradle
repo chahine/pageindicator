@@ -3,14 +3,13 @@ ext {
   minSdkVersion = 14
   compileSdkVersion = 27
   targetSdkVersion = 27
-  buildToolsVersion = '27.0.2'
-  gradleVersion = '3.0.1'
-  kotlinVersion = '1.2.21'
+  gradleVersion = '3.1.1'
+  kotlinVersion = '1.2.40'
 
-  supportLibraryVersion = '27.0.2'
+  supportLibraryVersion = '27.1.1'
 
   // Kotlin
-  kotlinStdlib = 'org.jetbrains.kotlin:kotlin-stdlib-jre8:' + kotlinVersion
+  kotlinStdlib = 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:' + kotlinVersion
 
   def groupId = 'com.android.support'
   appcompatV7 = groupId + ':appcompat-v7:' + supportLibraryVersion
@@ -18,8 +17,7 @@ ext {
   design = groupId + ':design:' + supportLibraryVersion
   recyclerviewV7 = groupId + ':recyclerview-v7:' + supportLibraryVersion
   supportAnnotations = groupId + ':support-annotations:' + supportLibraryVersion
-  supportV4 = groupId + ':support-v4:' + supportLibraryVersion
-  constraintLayout = groupId + '.constraint:constraint-layout:1.1.0-beta3'
+  constraintLayout = groupId + '.constraint:constraint-layout:1.1.0'
 
 
   picasso = 'com.squareup.picasso:picasso:2.6.0-SNAPSHOT'
@@ -29,7 +27,6 @@ ext {
                  design,
                  recyclerviewV7,
                  supportAnnotations,
-                 supportV4,
                  constraintLayout]
 
   junit = 'junit:junit:4.12'

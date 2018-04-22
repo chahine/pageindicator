@@ -6,11 +6,8 @@ apply plugin: 'com.github.dcendents.android-maven'
 group = 'com.github.chahinem'
 version = '0.2.5'
 
-androidExtensions { experimental = true }
-
 android {
   compileSdkVersion rootProject.compileSdkVersion
-  buildToolsVersion rootProject.buildToolsVersion
 
   defaultConfig {
     minSdkVersion rootProject.minSdkVersion
@@ -32,9 +29,8 @@ android {
 }
 
 dependencies {
-  implementation rootProject.kotlinStdlib
-  implementation rootProject.recyclerviewV7
-  implementation rootProject.supportV4
-
+  compileOnly rootProject.kotlinStdlib
+  compileOnly rootProject.recyclerviewV7
   testImplementation rootProject.junit
+  testImplementation rootProject.kotlinStdlib
 }
