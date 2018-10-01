@@ -1,10 +1,10 @@
 ext {
   // Android Version
   minSdkVersion = 14
-  compileSdkVersion = 27
-  targetSdkVersion = 27
-  gradleVersion = '3.1.1'
-  kotlinVersion = '1.2.40'
+  compileSdkVersion = 28
+  targetSdkVersion = 28
+  gradleVersion = '3.1.4'
+  kotlinVersion = '1.2.61'
 
   supportLibraryVersion = '27.1.1'
 
@@ -12,19 +12,22 @@ ext {
   kotlinStdlib = 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:' + kotlinVersion
 
   def groupId = 'com.android.support'
+  animatedVectorDrawable = groupId + ':animated-vector-drawable:' + supportLibraryVersion
   appcompatV7 = groupId + ':appcompat-v7:' + supportLibraryVersion
   cardView = groupId + ':cardview-v7:' + supportLibraryVersion
   design = groupId + ':design:' + supportLibraryVersion
+  exifinterface = groupId + ':exifinterface:' + supportLibraryVersion
   recyclerviewV7 = groupId + ':recyclerview-v7:' + supportLibraryVersion
   supportAnnotations = groupId + ':support-annotations:' + supportLibraryVersion
   constraintLayout = groupId + '.constraint:constraint-layout:1.1.0'
 
+  picasso = 'com.squareup.picasso:picasso:2.71828'
 
-  picasso = 'com.squareup.picasso:picasso:2.6.0-SNAPSHOT'
-
-  supportLibs = [appcompatV7,
+  supportLibs = [animatedVectorDrawable,
+                 appcompatV7,
                  cardView,
                  design,
+                 exifinterface,
                  recyclerviewV7,
                  supportAnnotations,
                  constraintLayout]

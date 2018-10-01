@@ -9,18 +9,17 @@ internal class DotManager(
     private val targetScrollListener: TargetScrollListener? = null
 ) {
 
-  internal var dots: ByteArray
+  internal var dots: ByteArray = ByteArray(count)
   internal var selectedIndex = 0
 
   private var scrollAmount = 0
 
   init {
-    if (count <= 0) {
-      throw IllegalArgumentException("count expected to be > 0, actual: $count")
+
+    if (count > 0) {
+      dots[0] = 6
     }
 
-    dots = ByteArray(count)
-    dots[0] = 6
     if (count <= SIZE_THRESHOLD) {
       (1 until count).forEach { i -> dots[i] = 5 }
     } else {

@@ -43,29 +43,26 @@ class PageIndicator @JvmOverloads constructor(
   private var scrollListener: RecyclerView.OnScrollListener? = null
   private var pageChangeListener: ViewPager.OnPageChangeListener? = null
 
-  private var _count = 0
-  var count: Int
+  var count: Int = 0
     set(value) {
-      _count = value
       dotManager = DotManager(
-          _count,
+          value,
           dotSize,
           dotSpacing,
           dotBound,
           dotSizeMap,
           this)
 
-      dotSizes = IntArray(_count)
+      dotSizes = IntArray(value)
       dotManager?.let { it.dots.forEachIndexed { index, dot -> dotSizes[index] = it.dotSizeFor(dot) } }
-      dotAnimators = Array(_count, { _ -> ValueAnimator() })
+      dotAnimators = Array(value) { ValueAnimator() }
 
-      initialPadding = when (count) {
-        in 1..4 -> (dotBound + (4 - count) * (dotSize + dotSpacing) + dotSpacing) / 2
+      initialPadding = when (value) {
+        in 0..4 -> (dotBound + (4 - value) * (dotSize + dotSpacing) + dotSpacing) / 2
         else -> 2 * (dotSize + dotSpacing)
       }
       invalidate()
     }
-    get() = _count
 
   init {
     val ta = getContext().obtainStyledAttributes(attrs, R.styleable.PageIndicator)

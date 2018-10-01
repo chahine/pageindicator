@@ -7,7 +7,7 @@ android:
     - tools
     - platform-tools
     - build-tools-27.0.3
-    - android-27
+    - android-28
     - extra-google-m2repository
     - extra-android-m2repository
   licenses:
@@ -15,7 +15,7 @@ android:
     - 'google-gdk-license-.+'
 
 before_install:
-  - echo yes | sdkmanager "platforms;android-27"
+  - echo yes | sdkmanager "platforms;android-28"
 
 script:
   - ./gradlew clean build -PdisablePreDex --stacktrace --console plain
