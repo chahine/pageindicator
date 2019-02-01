@@ -14,13 +14,14 @@ android {
     versionCode 1
     versionName '1.0'
 
-    testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
   }
 }
 
 dependencies {
   implementation project(':pageindicator')
+
   implementation rootProject.kotlinStdlib
   implementation rootProject.picasso
-  rootProject.supportLibs.each { implementation it }
+  implementation rootProject.supportLibs
 }

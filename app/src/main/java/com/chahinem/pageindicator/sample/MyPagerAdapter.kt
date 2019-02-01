@@ -1,11 +1,11 @@
 package com.chahinem.pageindicator.sample
 
-import android.support.v4.view.PagerAdapter
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.viewpager.widget.PagerAdapter
 import com.chahinem.pageindicator.sample.MyAdapter.MyItem
 import com.squareup.picasso.Picasso
 

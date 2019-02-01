@@ -84,3 +84,8 @@ hs_err_pid*
 /captures
 **/*.iml
 *.classgradle.properties
+
+
+# keep code style
+!.idea/codeStyles/
+!.idea/codeStyles/**

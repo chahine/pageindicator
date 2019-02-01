@@ -7,14 +7,19 @@ buildscript {
   dependencies {
     classpath "com.android.tools.build:gradle:$gradleVersion"
     classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlinVersion"
-    classpath 'com.github.dcendents:android-maven-gradle-plugin:2.0'
+    classpath 'com.github.dcendents:android-maven-gradle-plugin:2.1'
   }
+}
+
+plugins {
+  id 'com.github.ben-manes.versions' version '0.20.0'
 }
 
 allprojects {
   repositories {
     google()
     jcenter()
+    maven { url 'https://jitpack.io' }
     maven { url 'https://oss.sonatype.org/content/repositories/snapshots' }
   }
 }

@@ -5,15 +5,15 @@ import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
 import android.os.Parcelable
-import android.support.v4.view.PagerAdapter
-import android.support.v4.view.ViewPager
-import android.support.v4.view.ViewPager.OnPageChangeListener
-import android.support.v7.widget.RecyclerView
 import android.util.AttributeSet
 import android.view.View
 import android.view.animation.AnimationUtils
 import android.view.animation.DecelerateInterpolator
 import android.view.animation.Interpolator
+import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.RecyclerView
+import androidx.viewpager.widget.PagerAdapter
+import androidx.viewpager.widget.ViewPager
 import com.chahinem.pageindicator.DotManager.TargetScrollListener
 
 class PageIndicator @JvmOverloads constructor(
@@ -40,8 +40,8 @@ class PageIndicator @JvmOverloads constructor(
   private var scrollAnimator: ValueAnimator? = null
   private var initialPadding: Int = 0
 
-  private var scrollListener: RecyclerView.OnScrollListener? = null
-  private var pageChangeListener: ViewPager.OnPageChangeListener? = null
+  private lateinit var scrollListener: RecyclerView.OnScrollListener
+  private lateinit var pageChangeListener: ViewPager.OnPageChangeListener
 
   var count: Int = 0
     set(value) {
@@ -81,9 +81,11 @@ class PageIndicator @JvmOverloads constructor(
     animDuration = ta.getInteger(
         R.styleable.PageIndicator_piAnimDuration, DEFAULT_ANIM_DURATION).toLong()
     defaultPaint.color = ta.getColor(
-        R.styleable.PageIndicator_piDefaultColor, resources.getColor(R.color.pi_default_color))
+        R.styleable.PageIndicator_piDefaultColor,
+        ContextCompat.getColor(getContext(), R.color.pi_default_color))
     selectedPaint.color = ta.getColor(
-        R.styleable.PageIndicator_piSelectedColor, resources.getColor(R.color.pi_selected_color))
+        R.styleable.PageIndicator_piSelectedColor,
+        ContextCompat.getColor(getContext(), R.color.pi_selected_color))
     animInterpolator = AnimationUtils.loadInterpolator(context, ta.getResourceId(
         R.styleable.PageIndicator_piAnimInterpolator,
         R.anim.pi_default_interpolator))
@@ -116,8 +118,12 @@ class PageIndicator @JvmOverloads constructor(
     }
   }
 
-  override fun onSaveInstanceState(): Parcelable {
+  override fun onSaveInstanceState(): Parcelable? {
     val superState = super.onSaveInstanceState()
+    if (superState == null) {
+      return superState
+    }
+
     val savedState = SavedState(superState)
     savedState.count = this.count
     savedState.selectedIndex = this.dotManager?.selectedIndex ?: 0
@@ -151,19 +157,23 @@ class PageIndicator @JvmOverloads constructor(
     }
   }
 
-  fun attachTo(recyclerView: RecyclerView) {
-    recyclerView.removeOnScrollListener(scrollListener)
-    count = recyclerView.adapter.itemCount
+  infix fun attachTo(recyclerView: RecyclerView) {
+    if (::scrollListener.isInitialized) {
+      recyclerView.removeOnScrollListener(scrollListener)
+    }
+    count = recyclerView.adapter?.itemCount ?: 0
     scrollListener = ScrollListener(this)
     recyclerView.addOnScrollListener(scrollListener)
     scrollToTarget(0)
   }
 
-  fun attachTo(viewPager: ViewPager) {
-    pageChangeListener?.let { viewPager.removeOnPageChangeListener(it) }
+  infix fun attachTo(viewPager: ViewPager) {
+    if (::pageChangeListener.isInitialized) {
+      viewPager.removeOnPageChangeListener(pageChangeListener)
+    }
     count = (viewPager.adapter as PagerAdapter).count
     pageChangeListener = PageChangeListener(this)
-    viewPager.addOnPageChangeListener(pageChangeListener as OnPageChangeListener)
+    viewPager.addOnPageChangeListener(pageChangeListener)
     scrollToTarget(0)
   }
 

@@ -1,8 +1,8 @@
 package com.chahinem.pageindicator.sample
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
-import android.support.v7.widget.LinearSnapHelper
+import androidx.appcompat.app.AppCompatActivity
+import androidx.recyclerview.widget.LinearSnapHelper
 import com.chahinem.pageindicator.sample.MyAdapter.MyItem
 import com.squareup.picasso.Picasso.Builder
 import kotlinx.android.synthetic.main.activity_main.leftBtn
@@ -26,15 +26,15 @@ class MainActivity : AppCompatActivity() {
     list.adapter = adapter
     LinearSnapHelper().attachToRecyclerView(list)
     adapter.swapData(LIST_ITEMS)
-    pageIndicator.attachTo(list)
+    pageIndicator attachTo list
 
     // ViewPager
     val myPagerAdapter = MyPagerAdapter(picasso, LIST_ITEMS)
     pager.adapter = myPagerAdapter
-    pagerPageIndicator.attachTo(pager)
+    pagerPageIndicator attachTo pager
 
     // Manual
-    manualPageIndicator.count = 777
+    manualPageIndicator.count = 50
     leftBtn.setOnClickListener { manualPageIndicator.swipePrevious() }
     rightBtn.setOnClickListener { manualPageIndicator.swipeNext() }
   }
