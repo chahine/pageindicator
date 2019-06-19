@@ -1,6 +1,6 @@
 package com.chahinem.pageindicator
 
-import android.support.v4.view.ViewPager
+import androidx.viewpager.widget.ViewPager
 
 internal class PageChangeListener(private val indicator: PageIndicator) : ViewPager.OnPageChangeListener {
   private var selectedPage = 0

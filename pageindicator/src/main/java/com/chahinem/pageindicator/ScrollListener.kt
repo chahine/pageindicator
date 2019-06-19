@@ -1,12 +1,14 @@
 package com.chahinem.pageindicator
 
-import android.support.v7.widget.RecyclerView
+import androidx.recyclerview.widget.RecyclerView
 
 internal class ScrollListener(private val indicator: PageIndicator) : RecyclerView.OnScrollListener() {
   private var midPos = 0
   private var scrollX = 0
 
-  override fun onScrolled(recyclerView: RecyclerView, dx: Int, dy: Int) {
+  override fun onScrolled(recyclerView: RecyclerView,
+                          dx: Int,
+                          dy: Int) {
     super.onScrolled(recyclerView, dx, dy)
     scrollX += dx
     recyclerView.getChildAt(0)?.width?.let {
