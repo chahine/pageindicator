@@ -3,10 +3,8 @@ ext {
   minSdkVersion = 14
   compileSdkVersion = 28
   targetSdkVersion = 28
-  gradleVersion = '3.2.1'
-  kotlinVersion = '1.3.20'
-
-  supportLibraryVersion = '27.1.1'
+  gradleVersion = '3.5.0-beta04'
+  kotlinVersion = '1.3.40'
 
   // Kotlin
   kotlinStdlib = 'org.jetbrains.kotlin:kotlin-stdlib-jdk8:' + kotlinVersion
@@ -17,7 +15,7 @@ ext {
   design = "com.google.android.material:material:1.0.0"
   exifinterface = "androidx.exifinterface:exifinterface:1.0.0"
   recyclerviewV7 = "androidx.recyclerview:recyclerview:1.0.0"
-  supportAnnotations = "androidx.annotation:annotation:1.0.1"
+  supportAnnotations = "androidx.annotation:annotation:1.1.0"
   constraintLayout = "androidx.constraintlayout:constraintlayout:1.1.2"
 
   picasso = 'com.squareup.picasso:picasso:2.71828'

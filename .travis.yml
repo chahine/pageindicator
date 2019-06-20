@@ -1,6 +1,7 @@
 sudo: false
 
 language: android
+dist: trusty
 
 android:
   components:
