@@ -3,6 +3,8 @@
   <declare-styleable name="PageIndicator">
     <attr format="dimension" name="piDotSpacing"/>
     <attr format="dimension" name="piDotBound"/>
+    <attr format="dimension" name="piInitialPadding"/>
+    <attr format="boolean" name="piCentered"/>
 
     <attr format="dimension" name="piSize1"/>
     <attr format="dimension" name="piSize2"/>

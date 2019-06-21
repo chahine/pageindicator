@@ -5,13 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearSnapHelper
 import com.chahinem.pageindicator.sample.MyAdapter.MyItem
 import com.squareup.picasso.Picasso.Builder
-import kotlinx.android.synthetic.main.activity_main.leftBtn
-import kotlinx.android.synthetic.main.activity_main.list
-import kotlinx.android.synthetic.main.activity_main.manualPageIndicator
-import kotlinx.android.synthetic.main.activity_main.pageIndicator
-import kotlinx.android.synthetic.main.activity_main.pager
-import kotlinx.android.synthetic.main.activity_main.pagerPageIndicator
-import kotlinx.android.synthetic.main.activity_main.rightBtn
+import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,6 +21,7 @@ class MainActivity : AppCompatActivity() {
     LinearSnapHelper().attachToRecyclerView(list)
     adapter.swapData(LIST_ITEMS)
     pageIndicator attachTo list
+    pageIndicator2 attachTo list
 
     // ViewPager
     val myPagerAdapter = MyPagerAdapter(picasso, LIST_ITEMS)
@@ -42,33 +37,33 @@ class MainActivity : AppCompatActivity() {
   companion object {
     private val LIST_ITEMS = listOf(
         MyItem(
-            "San Francisco, California",
-            "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod",
-            "https://scontent-cdg2-1.cdninstagram.com/t51.2885-15/e35/25024416_182774512460963_6661054269581426688_n.jpg"),
+            "Cormorant fishing at sunset",
+            "Patryk Wojciechowicz",
+            "https://cdn.dribbble.com/users/3178178/screenshots/6287074/cormorant_fishing_1600x1200_final_04_05_2019_4x.jpg"),
         MyItem(
-            "Valensole",
-            "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod",
-            "https://scontent-cdg2-1.cdninstagram.com/t51.2885-15/e35/25022757_375109192929045_3153371362454667264_n.jpg"),
+            "Mountain House",
+            "Alex Pasquarella",
+            "https://cdn.dribbble.com/users/989466/screenshots/6100954/cabin-2-dribbble-alex-pasquarella_4x.png"),
         MyItem(
-            "Étretat",
-            "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod",
-            "https://scontent-cdg2-1.cdninstagram.com/t51.2885-15/e35/25005816_2020789231533395_4507938399037947904_n.jpg"),
+            "journey",
+            "Febin_Raj",
+            "https://cdn.dribbble.com/users/1803663/screenshots/6163551/nature-4_4x.png"),
         MyItem(
-            "Tokyo, Japan",
-            "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod",
-            "https://scontent-cdg2-1.cdninstagram.com/t51.2885-15/e35/23421860_192904647945945_6319320906002857984_n.jpg"),
+            "Explorer",
+            "Uran",
+            "https://cdn.dribbble.com/users/1355613/screenshots/6441984/landscape_4x.jpg"),
         MyItem(
-            "Paris, France",
-            "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod",
-            "https://scontent-cdg2-1.cdninstagram.com/t51.2885-15/e35/23347334_633654673691303_8149777143685971968_n.jpg"),
+            "Fishers Peak Limited Edition Print",
+            "Brian Edward Miller ",
+            "https://cdn.dribbble.com/users/329207/screenshots/6128300/bemocs_fisherspeak_dribbble.jpg"),
         MyItem(
-            "New York, New York",
-            "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod",
-            "https://scontent-cdg2-1.cdninstagram.com/t51.2885-15/e35/23101824_1822687121355425_8930059065124454400_n.jpg"),
+            "First Man",
+            "Lana Marandina",
+            "https://cdn.dribbble.com/users/1461762/screenshots/6280906/first_man_lana_marandina_4x.png"),
         MyItem(
-            "New York, New York",
-            "Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod",
-            "https://scontent-cdg2-1.cdninstagram.com/t51.2885-15/e35/23161047_853121148199404_5154039615094521856_n.jpg")
+            "On The Road Again",
+            "Brian Edward Miller",
+            "https://cdn.dribbble.com/users/329207/screenshots/6522800/2026_nationwide_02_train_landscape_v01.00.jpg")
     )
   }
 }

@@ -15,8 +15,10 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
 import com.chahinem.pageindicator.DotManager.TargetScrollListener
+import kotlin.math.max
+import kotlin.math.min
 
-class PageIndicator @JvmOverloads constructor(
+open class PageIndicator @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
@@ -34,6 +36,8 @@ class PageIndicator @JvmOverloads constructor(
   private val dotSpacing: Int
   private val animDuration: Long
   private val animInterpolator: Interpolator
+  private var centered: Boolean = true
+  private val customInitalPadding: Int
 
   private var dotManager: DotManager? = null
   private var scrollAmount: Int = 0
@@ -57,10 +61,16 @@ class PageIndicator @JvmOverloads constructor(
       dotManager?.let { it.dots.forEachIndexed { index, dot -> dotSizes[index] = it.dotSizeFor(dot) } }
       dotAnimators = Array(value) { ValueAnimator() }
 
-      initialPadding = when (value) {
-        in 0..4 -> (dotBound + (4 - value) * (dotSize + dotSpacing) + dotSpacing) / 2
-        else -> 2 * (dotSize + dotSpacing)
+      initialPadding = when {
+        !centered -> 0
+        customInitalPadding != -1 -> customInitalPadding
+        else -> when (value) {
+          in 0..4 -> (dotBound + (4 - value) * (dotSize + dotSpacing) + dotSpacing) / 2
+          else -> 2 * (dotSize + dotSpacing)
+        }
       }
+
+      field = value
       invalidate()
     }
 
@@ -76,7 +86,9 @@ class PageIndicator @JvmOverloads constructor(
     )
     dotSize = dotSizeMap.values.max() ?: 0
     dotSpacing = ta.getDimensionPixelSize(R.styleable.PageIndicator_piDotSpacing, 3.dp)
+    centered = ta.getBoolean(R.styleable.PageIndicator_piCentered, true)
     dotBound = ta.getDimensionPixelSize(R.styleable.PageIndicator_piDotBound, 40.dp)
+    customInitalPadding = ta.getDimensionPixelSize(R.styleable.PageIndicator_piInitialPadding, -1)
 
     animDuration = ta.getInteger(
         R.styleable.PageIndicator_piAnimDuration, DEFAULT_ANIM_DURATION).toLong()
@@ -95,7 +107,7 @@ class PageIndicator @JvmOverloads constructor(
   override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
     super.onMeasure(widthMeasureSpec, heightMeasureSpec)
     // FIXME: add support for `match_parent`
-    setMeasuredDimension(4 * (dotSize + dotSpacing) + dotBound, dotSize)
+    setMeasuredDimension(4 * (dotSize + dotSpacing) + dotBound + initialPadding, dotSize)
   }
 
   override fun onDraw(canvas: Canvas?) {
@@ -207,9 +219,8 @@ class PageIndicator @JvmOverloads constructor(
   }
 
   private fun getDrawingRange(): Pair<Int, Int> {
-    val start = Math.max(0, (dotManager?.selectedIndex ?: 0) - MOST_VISIBLE_COUNT)
-    val end = Math.min(
-        dotManager?.dots?.size ?: 0,
+    val start = max(0, (dotManager?.selectedIndex ?: 0) - MOST_VISIBLE_COUNT)
+    val end = min(dotManager?.dots?.size ?: 0,
         (dotManager?.selectedIndex ?: 0) + MOST_VISIBLE_COUNT)
     return Pair(start, end)
   }

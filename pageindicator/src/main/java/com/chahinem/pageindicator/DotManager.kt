@@ -70,8 +70,6 @@ internal class DotManager(
   }
 
   private fun goToNextLarge() {
-    var needScroll = false
-
     // swap 6 and 5
     dots[selectedIndex] = 6
     dots[selectedIndex - 1] = 5
@@ -83,7 +81,6 @@ internal class DotManager(
         && dots[selectedIndex - 3] == 5.toByte()
         && dots[selectedIndex - 4] == 5.toByte()) {
       dots[selectedIndex - 4] = 4
-      needScroll = true
       if (selectedIndex - 5 >= 0) {
         dots[selectedIndex - 5] = 2
         (selectedIndex - 6 downTo 0)
@@ -92,10 +89,9 @@ internal class DotManager(
       }
     }
 
-    // 6 must around around 3 or higher
+    // 6 must be around 3 or higher
     if (selectedIndex + 1 < dots.size && dots[selectedIndex + 1] < 3) {
       dots[selectedIndex + 1] = 3
-      needScroll = true
       // set the next one to 1 if any
       if (selectedIndex + 2 < dots.size && dots[selectedIndex + 2] < 1) {
         dots[selectedIndex + 2] = 1
@@ -103,12 +99,10 @@ internal class DotManager(
     }
 
     // Scroll to keep the selected dot within bound
-    if (needScroll) {
-      val endBound = selectedIndex * (dotSize + dotSpacing) + dotSize
-      if (endBound > dotBound) {
-        scrollAmount = endBound - dotBound
-        targetScrollListener?.scrollToTarget(scrollAmount)
-      }
+    val endBound = selectedIndex * (dotSize + dotSpacing) + dotSize
+    if (endBound > dotBound) {
+      scrollAmount = endBound - dotBound
+      targetScrollListener?.scrollToTarget(scrollAmount)
     }
   }
 
@@ -118,7 +112,6 @@ internal class DotManager(
   }
 
   private fun goToPreviousLarge() {
-    var needScroll = false
     // swap 6 and 5
     dots[selectedIndex] = 6
     dots[selectedIndex + 1] = 5
@@ -130,7 +123,6 @@ internal class DotManager(
         && dots[selectedIndex + 3] == 5.toByte()
         && dots[selectedIndex + 4] == 5.toByte()) {
       dots[selectedIndex + 4] = 4
-      needScroll = true
       if (selectedIndex + 5 < dots.size) {
         dots[selectedIndex + 5] = 2
         (selectedIndex + 6 until dots.size)
@@ -139,9 +131,8 @@ internal class DotManager(
       }
     }
 
-    // 6 must around around 3 or higher
+    // 6 must be around 3 or higher
     if (selectedIndex - 1 >= 0 && dots[selectedIndex - 1] < 3) {
-      needScroll = true
       dots[selectedIndex - 1] = 3
       // set the next one to 1 if any
       if (selectedIndex - 2 >= 0 && dots[selectedIndex - 2] < 1) {
@@ -150,12 +141,10 @@ internal class DotManager(
     }
 
     // Scroll to keep the selected dot within bound
-    if (needScroll) {
-      val startBound = selectedIndex * (dotSize + dotSpacing)
-      if (startBound < scrollAmount) {
-        scrollAmount = selectedIndex * (dotSize + dotSpacing)
-        targetScrollListener?.scrollToTarget(scrollAmount)
-      }
+    val startBound = selectedIndex * (dotSize + dotSpacing)
+    if (startBound < scrollAmount) {
+      scrollAmount = selectedIndex * (dotSize + dotSpacing)
+      targetScrollListener?.scrollToTarget(scrollAmount)
     }
   }
 
